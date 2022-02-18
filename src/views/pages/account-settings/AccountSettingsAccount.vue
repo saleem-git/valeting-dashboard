@@ -64,7 +64,7 @@
               dense
               label="Role"
               outlined
-              disabled
+              :disabled=isAdmin
             ></v-text-field>
           </v-col>
 
@@ -96,15 +96,6 @@
             >
               Save changes
             </v-btn>
-            <v-btn
-              color="secondary"
-              outlined
-              class="mt-4"
-              type="reset"
-              @click.prevent="resetForm"
-            >
-              Cancel
-            </v-btn>
           </v-col>
         </v-row>
       </v-form>
@@ -116,7 +107,7 @@
 import { mdiAlertOutline, mdiCloudUploadOutline } from '@mdi/js'
 import { ref } from '@vue/composition-api'
 import { emailValidation,commonValidation } from '../../../utils/commonutils'
-
+import { useState, useMutations } from 'vuex-composition-helpers/dist'
 
 export default {
   props: {
@@ -127,21 +118,18 @@ export default {
   },
   setup(props) {
     const status = ['Active', 'Inactive', 'Pending', 'Closed']
-
     const accountDataLocale = ref(JSON.parse(JSON.stringify(props.accountData)))
-
-    const resetForm = () => {
-      accountDataLocale.value = JSON.parse(JSON.stringify(props.accountData))
-    }
     let formValidity = false
+    let { role } = useState(['role'])
+    let isAdmin = role.value == "Admin" ? false : true   
 
     return {
       status,
       accountDataLocale,
-      resetForm,
       emailValidation,
       commonValidation,
       formValidity,
+      isAdmin,
       icons: {
         mdiAlertOutline,
         mdiCloudUploadOutline,

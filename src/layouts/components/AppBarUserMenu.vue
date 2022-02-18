@@ -75,7 +75,7 @@
           </v-icon>
         </v-list-item-icon>
         <v-list-item-content>
-          <v-list-item-title>Logout</v-list-item-title>
+          <v-list-item-title  v-on:click="logout"  >Logout</v-list-item-title>
         </v-list-item-content>
       </v-list-item>
     </v-list>
@@ -107,6 +107,14 @@ export default {
         mdiHelpCircleOutline,
         mdiLogoutVariant,
       },
+    }
+  },
+  methods:{
+    logout: function () {
+      this.$store.commit('setRole','')
+      localStorage.setItem('isLogin',false)
+      localStorage.setItem('role','')
+      this.$router.push({ name: 'pages-login' })
     }
   },
   computed:{

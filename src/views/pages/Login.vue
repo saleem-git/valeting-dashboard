@@ -123,17 +123,18 @@ import { mdiEyeOutline, mdiEyeOffOutline } from '@mdi/js'
 import { ref } from '@vue/composition-api'
 import {emailValidation,commonValidation} from '../../utils/commonutils'
 import { useState, useMutations } from 'vuex-composition-helpers/dist'
-
+import router from '../../router/index';
 
 export default {
   setup() {
     const isPasswordVisible = ref(false)
-    const email = ref('')
-    const password = ref('')
+    const email = ref('fsdgas@ssfg.com')
+    const password = ref('ddddd')
     let formValidity = false
     let { users } = useState(['users'])
     let snackbar = ref(false)
     let snackBarText = ref('')
+    const { setRole } = useMutations(['setRole'])
 
     const signinUser = () => {
       let userObj = users.value.get(email.value)
@@ -143,6 +144,16 @@ export default {
       } else if (userObj['password'] == password.value) {
         snackbar.value = true
         snackBarText.value = "Log in Successful"
+        localStorage.setItem('isLogin',true)
+        let role = userObj.role || 'user'
+        localStorage.setItem('role',role)
+        setRole(role)
+        if (role == "Admin") {
+        router.push({ name: 'manage-account', params: { id: email.value  } })
+        } else {
+          router.push({ name: 'pages-account-settings', params: { id: email.value  } })
+        }
+        
       } else {
         snackbar.value = true
         snackBarText.value = "Password Incorrect"

@@ -106,15 +106,7 @@
         >
           Save changes
         </v-btn>
-        <v-btn
-          outlined
-          class="mt-3"
-          color="secondary"
-          type="reset"
-          @click.prevent="resetForm"
-        >
-          Cancel
-        </v-btn>
+        
       </v-card-text>
     </v-form>
   </v-card>
@@ -136,11 +128,7 @@ export default {
     const dateMenu = false
     let formValidity = false
 
-    const resetForm = () => {
-      optionsLocal.value = JSON.parse(JSON.stringify(props.informationData))
-    }
-
-    return { optionsLocal, resetForm,dateMenu,commonValidation,formValidity }
+    return { optionsLocal,dateMenu,commonValidation,formValidity }
   },
 }
 </script>

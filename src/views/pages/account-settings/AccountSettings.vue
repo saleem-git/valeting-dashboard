@@ -47,17 +47,17 @@ export default {
       accountSettingData: {
         account: {
           avatarImg: require('@/assets/images/avatars/1.png'),
-          username: 'johnDoe',
-          name: 'john Doe',
-          email: 'johnDoe@example.com',
-          role: 'User',
-          status: 'Active',
+          username: '',
+          name: '',
+          email: '',
+          role: '',
+          status: '',
         },
         information: {
           birthday: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
-          phone: '954-006-0844',
-          languages: ['English', 'Spanish'],
-          gender: 'male',
+          phone: '',
+          languages: [],
+          gender: '',
         },
         icons: {
           mdiAccountOutline,
@@ -88,6 +88,15 @@ export default {
         status: 'Active',
       }
       this.accountSettingData.account = { ...this.accountSettingData.account, ...tmpAccount }
+
+      let tmpPersonal = {
+        birthday: userData.personal.birthday || (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
+        phone: userData.personal.phone || '',
+        languages: userData.personal.languages || '',
+        gender: userData.personal.gender || '',
+      }
+
+      this.accountSettingData.information = {...this.accountSettingData.information,...tmpPersonal}
     },
     updateUserPersonal: function (personalInfo) {
       let tmpPersonalAccount ={}

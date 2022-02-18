@@ -5,7 +5,8 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    users :new Map()
+    users :new Map(),
+    role: ''
   },
   mutations: {
     addNewUser (state,payload) {
@@ -17,7 +18,10 @@ export default new Vuex.Store({
       let newMap = new Map(Object.entries(JSON.parse(payload.data)));
       state.users = new Map([...state.users, ...newMap])
     },
-    updateUserInfo(state,payload) {      
+    setRole (state,payload) {
+      state.role = payload
+    },
+    updateUserInfo(state,payload) {
       let key = Object.keys(payload)[0]
       if ('birthday' in payload[key]) {
         let tmpData = {}
@@ -28,6 +32,7 @@ export default new Vuex.Store({
         let tmpObj = {[key]:{...state.users.get(key),...payload[key]}}
         state.users = new Map([...state.users,...new Map(Object.entries(tmpObj))])
       }
+      localStorage.setItem('allUsers',JSON.stringify(Object.fromEntries(state.users)))
     },
     addCarToservice (state,payload) {
       let newMap = new Map(Object.entries(JSON.parse(payload.data)));

@@ -42,7 +42,7 @@
         :to="{ name: 'dashboard' }"
         :icon="icons.mdiHomeOutline"
       ></nav-menu-link>
-      <nav-menu-link
+      <nav-menu-link v-if="store.state.role == 'Admin'"
         title="Manage Account"
         :to="{ name: 'manage-account'}"
         :icon="icons.mdiAccount"
@@ -96,6 +96,7 @@ import {
 import NavMenuSectionTitle from './components/NavMenuSectionTitle.vue'
 import NavMenuGroup from './components/NavMenuGroup.vue'
 import NavMenuLink from './components/NavMenuLink.vue'
+import store from '../../../store/index'
 
 export default {
   components: {
@@ -123,6 +124,7 @@ export default {
         mdiAccount,
         mdiCarEstate
       },
+      store
     }
   },
 }
