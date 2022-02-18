@@ -30,12 +30,12 @@
           sm="6"
         >
           <statistics-card-vertical
-            :change="totalSales.change"
-            :color="totalSales.color"
-            :icon="totalSales.icon"
-            :statistics="totalSales.statistics"
-            :stat-title="totalSales.statTitle"
-            :subtitle="totalSales.subtitle"
+            :change="totalCarsService.change"
+            :color="totalCarsService.color"
+            :icon="totalCarsService.icon"
+            :statistics="totalCarsService.statistics"
+            :stat-title="totalCarsService.statTitle"
+            :subtitle="totalCarsService.subtitle"
           ></statistics-card-vertical>
         </v-col>
         <v-col
@@ -98,7 +98,7 @@ export default {
       change: '+42%',
     }
 
-    const totalSales = {
+    const totalCarsService = {
       statTitle: 'Refunds',
       icon: mdiCurrencyUsd,
       color: 'secondary',
@@ -128,7 +128,7 @@ export default {
 
     return {
       totalProfit,
-      totalSales,
+      totalCarsService,
       newProject,
       salesQueries,
     }

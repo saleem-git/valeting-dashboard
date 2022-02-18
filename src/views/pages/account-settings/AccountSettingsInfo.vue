@@ -3,28 +3,37 @@
     flat
     class="pa-3 mt-2"
   >
-    <v-form class="multi-col-validation">
+    <v-form class="multi-col-validation" v-model="formValidity">
       <v-card-text class="pt-5">
         <v-row>
-          <v-col cols="12">
-            <v-textarea
-              v-model="optionsLocal.bio"
-              outlined
-              rows="3"
-              label="Bio"
-            ></v-textarea>
-          </v-col>
-
           <v-col
             cols="12"
             md="6"
           >
-            <v-text-field
-              v-model="optionsLocal.birthday"
-              outlined
-              dense
-              label="Birthday"
-            ></v-text-field>
+            <v-menu
+        v-model= "dateMenu"
+        :close-on-content-click="false"
+        :nudge-right="40"
+        transition="scale-transition"
+        offset-y
+        min-width="auto"
+      >
+        <template v-slot:activator="{ on, attrs }">
+          <v-text-field
+            v-model="optionsLocal.birthday"
+            label="Picker without buttons"
+            prepend-icon="mdi-calendar"
+            readonly
+            v-bind="attrs"
+            v-on="on"
+            :rules="commonValidation"
+          ></v-text-field>
+        </template>
+        <v-date-picker
+          v-model="optionsLocal.birthday"
+          @input="dateMenu = false"
+        ></v-date-picker>
+      </v-menu>
           </v-col>
 
           <v-col
@@ -36,34 +45,9 @@
               outlined
               dense
               label="Phone"
+              :rules="commonValidation"
             ></v-text-field>
           </v-col>
-
-          <v-col
-            cols="12"
-            md="6"
-          >
-            <v-text-field
-              v-model="optionsLocal.website"
-              outlined
-              dense
-              label="Website"
-            ></v-text-field>
-          </v-col>
-
-          <v-col
-            cols="12"
-            md="6"
-          >
-            <v-select
-              v-model="optionsLocal.country"
-              outlined
-              dense
-              label="Country"
-              :items="['USA','UK','AUSTRALIA','BRAZIL']"
-            ></v-select>
-          </v-col>
-
           <v-col
             cols="12"
             md="6"
@@ -76,7 +60,7 @@
               chips
               small-chips
               label="Languages"
-              :items="['English','Spanish','French','German']"
+              :items="['English','Hindi','Kannada']"
             ></v-select>
           </v-col>
 
@@ -117,6 +101,8 @@
         <v-btn
           color="primary"
           class="me-3 mt-3"
+          :disabled="!formValidity"
+          v-on:click="$emit('updatePersonal', optionsLocal)"
         >
           Save changes
         </v-btn>
@@ -136,6 +122,7 @@
 
 <script>
 import { ref } from '@vue/composition-api'
+import { commonValidation } from '../../../utils/commonutils'
 
 export default {
   props: {
@@ -146,12 +133,14 @@ export default {
   },
   setup(props) {
     const optionsLocal = ref(JSON.parse(JSON.stringify(props.informationData)))
+    const dateMenu = false
+    let formValidity = false
 
     const resetForm = () => {
       optionsLocal.value = JSON.parse(JSON.stringify(props.informationData))
     }
 
-    return { optionsLocal, resetForm }
+    return { optionsLocal, resetForm,dateMenu,commonValidation,formValidity }
   },
 }
 </script>

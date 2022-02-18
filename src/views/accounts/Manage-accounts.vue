@@ -13,7 +13,7 @@
             Name
           </th>
           <th class="text-left">
-            Calories
+            Role
           </th>
         </tr>
       </thead>
@@ -23,7 +23,7 @@
           :key="item.name"
         >
           <td>{{ item.name }}</td>
-          <td>{{ item.calories }}</td>
+          <td>{{ item.role }}</td>
         </tr>
       </tbody>
     </template>
@@ -70,17 +70,13 @@ export default {
         const closeOnClick= ref(true)
         const listitems = ref([
           {
-            name: 'Frozen Yogurt',
-            calories: 159,
+            name: 'Saleem',
+            role: 'Admin',
           },
           {
-            name: 'Ice cream sandwich',
-            calories: 237,
-          },
-          {
-            name: 'Eclair',
-            calories: 262,
-          },
+            name: 'Maneesh',
+            role: 'Admin',
+          }
       ])
       let { users } = useState(['users'])
       users = Object.fromEntries(users.value)

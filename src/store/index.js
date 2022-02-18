@@ -16,6 +16,27 @@ export default new Vuex.Store({
     addDataToStore (state,payload) {
       let newMap = new Map(Object.entries(JSON.parse(payload.data)));
       state.users = new Map([...state.users, ...newMap])
+    },
+    updateUserInfo(state,payload) {      
+      let key = Object.keys(payload)[0]
+      if ('birthday' in payload[key]) {
+        let tmpData = {}
+        tmpData['personal'] = payload[key]
+        let tmpObj = {[key]:{...state.users.get(key),...tmpData}}
+        state.users = new Map([...state.users,...new Map(Object.entries(tmpObj))])
+      } else {
+        let tmpObj = {[key]:{...state.users.get(key),...payload[key]}}
+        state.users = new Map([...state.users,...new Map(Object.entries(tmpObj))])
+      }
+    },
+    addCarToservice (state,payload) {
+      let newMap = new Map(Object.entries(JSON.parse(payload.data)));
+      state.users = new Map([...state.users, ...newMap])
+    },
+  },
+  getters: {
+    getUser: state => (id) => {
+      return state.users.get(id)
     }
   },
   actions: {},

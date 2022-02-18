@@ -15,8 +15,7 @@
     </v-card-title>
 
     <v-card-subtitle class="mb-8 mt-n5">
-      <span class="font-weight-semibold text--primary me-1">Total 48.5% Growth</span>
-      <span>😎 this month</span>
+      <span class="font-weight-semibold text--primary me-1"></span>
     </v-card-subtitle>
 
     <v-card-text>
@@ -64,20 +63,20 @@ export default {
   setup() {
     const statisticsData = [
       {
-        title: 'Sales',
-        total: '245k',
+        title: 'Total Cars',
+        total: '24',
       },
       {
         title: 'Customers',
         total: '12.5k',
       },
       {
-        title: 'Product',
-        total: '1.54k',
+        title: 'In service',
+        total: '15',
       },
       {
-        title: 'Revenue',
-        total: '$88k',
+        title: 'Waiting',
+        total: '9',
       },
     ]
 

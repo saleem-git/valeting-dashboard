@@ -10,43 +10,11 @@
         class="me-6"
       >
         <v-img :src="accountDataLocale.avatarImg"></v-img>
-      </v-avatar>
-
-      <!-- upload photo -->
-      <div>
-        <v-btn
-          color="primary"
-          class="me-3 mt-5"
-          @click="$refs.refInputEl.click()"
-        >
-          <v-icon class="d-sm-none">
-            {{ icons.mdiCloudUploadOutline }}
-          </v-icon>
-          <span class="d-none d-sm-block">Upload new photo</span>
-        </v-btn>
-
-        <input
-          ref="refInputEl"
-          type="file"
-          accept=".jpeg,.png,.jpg,GIF"
-          :hidden="true"
-        />
-
-        <v-btn
-          color="error"
-          outlined
-          class="mt-5"
-        >
-          Reset
-        </v-btn>
-        <p class="text-sm mt-5">
-          Allowed JPG, GIF or PNG. Max size of 800K
-        </p>
-      </div>
+      </v-avatar>      
     </v-card-text>
 
     <v-card-text>
-      <v-form class="multi-col-validation mt-6">
+      <v-form class="multi-col-validation mt-6" v-model="formValidity">
         <v-row>
           <v-col
             md="6"
@@ -57,6 +25,7 @@
               label="Username"
               dense
               outlined
+              :rules="commonValidation"
             ></v-text-field>
           </v-col>
 
@@ -66,6 +35,7 @@
           >
             <v-text-field
               v-model="accountDataLocale.name"
+              :rules="commonValidation"
               label="Name"
               dense
               outlined
@@ -81,6 +51,7 @@
               label="E-mail"
               dense
               outlined
+              :rules="emailValidation"
             ></v-text-field>
           </v-col>
 
@@ -93,6 +64,7 @@
               dense
               label="Role"
               outlined
+              disabled
             ></v-text-field>
           </v-col>
 
@@ -113,45 +85,14 @@
             cols="12"
             md="6"
           >
-            <v-text-field
-              v-model="accountDataLocale.company"
-              dense
-              outlined
-              label="Company"
-            ></v-text-field>
           </v-col>
-
-          <!-- alert -->
-          <v-col cols="12">
-            <v-alert
-              color="warning"
-              text
-              class="mb-0"
-            >
-              <div class="d-flex align-start">
-                <v-icon color="warning">
-                  {{ icons.mdiAlertOutline }}
-                </v-icon>
-
-                <div class="ms-3">
-                  <p class="text-base font-weight-medium mb-1">
-                    Your email is not confirmed. Please check your inbox.
-                  </p>
-                  <a
-                    href="javascript:void(0)"
-                    class="text-decoration-none warning--text"
-                  >
-                    <span class="text-sm">Resend Confirmation</span>
-                  </a>
-                </div>
-              </div>
-            </v-alert>
-          </v-col>
-
+          
           <v-col cols="12">
             <v-btn
               color="primary"
               class="me-3 mt-4"
+              v-on:click="$emit('updateAccountAccount', accountDataLocale)"
+              :disabled="!formValidity"
             >
               Save changes
             </v-btn>
@@ -174,13 +115,15 @@
 <script>
 import { mdiAlertOutline, mdiCloudUploadOutline } from '@mdi/js'
 import { ref } from '@vue/composition-api'
+import { emailValidation,commonValidation } from '../../../utils/commonutils'
+
 
 export default {
   props: {
     accountData: {
       type: Object,
       default: () => {},
-    },
+    }
   },
   setup(props) {
     const status = ['Active', 'Inactive', 'Pending', 'Closed']
@@ -190,11 +133,15 @@ export default {
     const resetForm = () => {
       accountDataLocale.value = JSON.parse(JSON.stringify(props.accountData))
     }
+    let formValidity = false
 
     return {
       status,
       accountDataLocale,
       resetForm,
+      emailValidation,
+      commonValidation,
+      formValidity,
       icons: {
         mdiAlertOutline,
         mdiCloudUploadOutline,

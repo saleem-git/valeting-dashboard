@@ -45,15 +45,21 @@
       <nav-menu-link
         title="Manage Account"
         :to="{ name: 'manage-account'}"
-        :icon="icons.mdiAccountCogOutline"
+        :icon="icons.mdiAccount"
+      ></nav-menu-link>
+      <nav-menu-link
+        title="Manage Cars"
+        :to="{ name: '' }"
+        :icon="icons.mdiCarEstate"
       ></nav-menu-link>
       <nav-menu-link
         title="Account Settings"
         :to="{ name: 'pages-account-settings'}"
         :icon="icons.mdiAccountCogOutline"
       ></nav-menu-link>
+      
       <nav-menu-group
-        title="Pages"
+        title="Service"
         :icon="icons.mdiFileOutline"
       >
         <nav-menu-link
@@ -69,7 +75,6 @@
           :to="{ name: 'error-404' }"
         ></nav-menu-link>
       </nav-menu-group>
-      <nav-menu-section-title title="USER INTERFACE"></nav-menu-section-title>
     </v-list>
   </v-navigation-drawer>
 </template>
@@ -85,6 +90,8 @@ import {
   mdiFileOutline,
   mdiFormSelect,
   mdiAccountCogOutline,
+  mdiAccount,
+  mdiCarEstate
 } from '@mdi/js'
 import NavMenuSectionTitle from './components/NavMenuSectionTitle.vue'
 import NavMenuGroup from './components/NavMenuGroup.vue'
@@ -113,6 +120,8 @@ export default {
         mdiFileOutline,
         mdiFormSelect,
         mdiAccountCogOutline,
+        mdiAccount,
+        mdiCarEstate
       },
     }
   },
