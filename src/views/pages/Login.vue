@@ -142,8 +142,6 @@ export default {
         snackbar.value = true
         snackBarText.value = "Email ID/User not found"
       } else if (userObj['password'] == password.value) {
-        snackbar.value = true
-        snackBarText.value = "Log in Successful"
         localStorage.setItem('isLogin',true)
         let role = userObj.role || 'user'
         localStorage.setItem('role',role)
