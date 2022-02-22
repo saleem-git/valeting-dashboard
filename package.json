@@ -4,7 +4,7 @@
   "license": "MIT",
   "version": "1.0.0",
   "author": "Saleem",
-  "private": true,
+  "private": false,
   "repository": "",
   "keywords": [],
   "scripts": {
