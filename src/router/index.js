@@ -28,6 +28,18 @@ const routes = [
     meta: { requiresAuth: true }
   },
   {
+    path: '/manage-cars/:id',
+    name: 'manage-cars',
+    component: () => import('@/views/valeting/manage-cars.vue'),
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/list-cars/:id',
+    name: 'list-cars',
+    component: () => import('@/views/valeting/service-cars'),
+    meta: { requiresAuth: true }
+  },
+  {
     path: '/pages/login',
     name: 'pages-login',
     component: () => import('@/views/pages/Login.vue'),
@@ -63,21 +75,21 @@ const router = new VueRouter({
   routes,
 })
 
-// router.beforeEach((to, from, next) => {
-//   if (to.matched.some(record => record.meta.requiresAuth)) {
-//     // this route requires auth, check if logged in
-//     // if not, redirect to login page.
-//     if (localStorage.getItem('isLogin') !== 'true') {
-//       next({
-//         path: '/pages/login',
-//         query: { redirect: to.fullPath }
-//       })
-//     } else {
-//       next()
-//     }
-//   } else {
-//     next() // make sure to always call next()!
-//   }
-// })
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    // this route requires auth, check if logged in
+    // if not, redirect to login page.
+    if (localStorage.getItem('isLogin') !== 'true') {
+      next({
+        path: '/pages/login',
+        query: { redirect: to.fullPath }
+      })
+    } else {
+      next()
+    }
+  } else {
+    next() // make sure to always call next()!
+  }
+})
 
 export default router

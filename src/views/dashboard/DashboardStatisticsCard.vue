@@ -58,27 +58,42 @@
 <script>
 // eslint-disable-next-line object-curly-newline
 import { mdiAccountOutline, mdiCurrencyUsd, mdiTrendingUp, mdiDotsVertical, mdiLabelOutline } from '@mdi/js'
+import { ref } from '@vue/composition-api'
+import { useState, useMutations } from 'vuex-composition-helpers/dist'
 
 export default {
   setup() {
-    const statisticsData = [
+    let statisticsData =ref( [
       {
         title: 'Total Cars',
-        total: '24',
+        total: '2',
       },
       {
-        title: 'Customers',
-        total: '12.5k',
+        title: 'Agents',
+        total: '',
       },
       {
         title: 'In service',
-        total: '15',
+        total: '',
       },
       {
         title: 'Waiting',
-        total: '9',
+        total: '',
       },
-    ]
+    ])
+    let { users } = useState(['users'])
+    statisticsData.value[1].total = users.value.size
+
+    for (let value of users.value.values()) {
+  let count = 0
+    if ('carInfo' in value) {
+        count = count+ value.carInfo.length 
+        statisticsData.value[2].total = count
+        }
+    
+}
+
+    
 
     const resolveStatisticsIconVariation = data => {
       if (data === 'Sales') return { icon: mdiTrendingUp, color: 'primary' }

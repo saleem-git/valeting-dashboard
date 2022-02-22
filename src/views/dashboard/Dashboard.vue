@@ -6,67 +6,6 @@
     >
       <dashboard-statistics-card></dashboard-statistics-card>
     </v-col>
-
-    <!-- <v-col
-      cols="12"
-      md="4"
-    >
-      <v-row class="match-height">
-        <v-col
-          cols="12"
-          sm="6"
-        >
-          <statistics-card-vertical
-            :change="totalProfit.change"
-            :color="totalProfit.color"
-            :icon="totalProfit.icon"
-            :statistics="totalProfit.statistics"
-            :stat-title="totalProfit.statTitle"
-            :subtitle="totalProfit.subtitle"
-          ></statistics-card-vertical>
-        </v-col>
-        <v-col
-          cols="12"
-          sm="6"
-        >
-          <statistics-card-vertical
-            :change="totalCarsService.change"
-            :color="totalCarsService.color"
-            :icon="totalCarsService.icon"
-            :statistics="totalCarsService.statistics"
-            :stat-title="totalCarsService.statTitle"
-            :subtitle="totalCarsService.subtitle"
-          ></statistics-card-vertical>
-        </v-col>
-        <v-col
-          cols="12"
-          sm="6"
-        >
-          <statistics-card-vertical
-            :change="newProject.change"
-            :color="newProject.color"
-            :icon="newProject.icon"
-            :statistics="newProject.statistics"
-            :stat-title="newProject.statTitle"
-            :subtitle="newProject.subtitle"
-          ></statistics-card-vertical>
-        </v-col>
-
-        <v-col
-          cols="12"
-          sm="6"
-        >
-          <statistics-card-vertical
-            :change="salesQueries.change"
-            :color="salesQueries.color"
-            :icon="salesQueries.icon"
-            :statistics="salesQueries.statistics"
-            :stat-title="salesQueries.statTitle"
-            :subtitle="salesQueries.subtitle"
-          ></statistics-card-vertical>
-        </v-col>
-      </v-row>
-    </v-col> -->
     <v-col cols="12">
       <dashboard-datatable></dashboard-datatable>
     </v-col>

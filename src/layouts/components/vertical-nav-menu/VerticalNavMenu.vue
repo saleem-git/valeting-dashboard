@@ -37,7 +37,7 @@
       shaped
       class="vertical-nav-menu-items pr-5"
     >
-      <nav-menu-link
+      <nav-menu-link v-if="store.state.role == 'Admin'"
         title="Dashboard"
         :to="{ name: 'dashboard' }"
         :icon="icons.mdiHomeOutline"
@@ -47,9 +47,9 @@
         :to="{ name: 'manage-account'}"
         :icon="icons.mdiAccount"
       ></nav-menu-link>
-      <nav-menu-link
+      <nav-menu-link v-if="store.state.role != 'Admin'"
         title="Manage Cars"
-        :to="{ name: '' }"
+        :to="{ name: 'list-cars'}"
         :icon="icons.mdiCarEstate"
       ></nav-menu-link>
       <nav-menu-link
@@ -63,17 +63,10 @@
         :icon="icons.mdiFileOutline"
       >
         <nav-menu-link
-          title="Login"
-          :to="{ name: 'pages-login' }"
-        ></nav-menu-link>
-        <nav-menu-link
           title="Register"
           :to="{ name: 'pages-register' }"
         ></nav-menu-link>
-        <nav-menu-link
-          title="Error"
-          :to="{ name: 'error-404' }"
-        ></nav-menu-link>
+
       </nav-menu-group>
     </v-list>
   </v-navigation-drawer>

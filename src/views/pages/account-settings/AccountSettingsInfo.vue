@@ -21,7 +21,7 @@
         <template v-slot:activator="{ on, attrs }">
           <v-text-field
             v-model="optionsLocal.birthday"
-            label="Picker without buttons"
+            label="Pick BirthDate"
             prepend-icon="mdi-calendar"
             readonly
             v-bind="attrs"

@@ -16,8 +16,16 @@ const emailValidation = [
     value => !!value || 'Required'
   ]
 
+  const numberRule=[
+    value => !!value || 'Required.',
+    value => {    
+    const pattern = /^[0-9]*$/
+    return pattern.test(value) || 'Numbers Only.'
+  }]
+
   export {
       emailValidation,
       commonValidation,
-      checkboxRequired
+      checkboxRequired,
+      numberRule
   }
