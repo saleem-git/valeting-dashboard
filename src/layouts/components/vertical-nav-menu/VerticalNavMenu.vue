@@ -57,17 +57,6 @@
         :to="{ name: 'pages-account-settings'}"
         :icon="icons.mdiAccountCogOutline"
       ></nav-menu-link>
-      
-      <nav-menu-group
-        title="Service"
-        :icon="icons.mdiFileOutline"
-      >
-        <nav-menu-link
-          title="Register"
-          :to="{ name: 'pages-register' }"
-        ></nav-menu-link>
-
-      </nav-menu-group>
     </v-list>
   </v-navigation-drawer>
 </template>

@@ -15,37 +15,13 @@
             class="d-block d-lg-none me-2"
             @click="isDrawerOpen = !isDrawerOpen"
           ></v-app-bar-nav-icon>
-          <v-text-field
-            rounded
-            dense
-            outlined
-            :prepend-inner-icon="icons.mdiMagnify"
-            class="app-bar-search flex-grow-0"
-            hide-details
-          ></v-text-field>
+         
 
           <v-spacer></v-spacer>
 
           <!-- Right Content -->
-          <a
-            href="https://github.com/themeselection/materio-vuetify-vuejs-admin-template-free"
-            target="_blank"
-            rel="nofollow"
-          >
-            <v-icon class="ms-6 me-4">
-              {{ icons.mdiGithub }}
-            </v-icon>
-          </a>
-          <theme-switcher></theme-switcher>
-          <v-btn
-            icon
-            small
-            class="ms-3"
-          >
-            <v-icon>
-              {{ icons.mdiBellOutline }}
-            </v-icon>
-          </v-btn>
+        
+          
           <app-bar-user-menu></app-bar-user-menu>
         </div>
       </div>

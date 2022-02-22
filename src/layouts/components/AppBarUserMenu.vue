@@ -18,7 +18,7 @@
           <span class="text--primary font-weight-semibold mb-n1">
             {{ userName }}
           </span>
-          <small class="text--disabled text-capitalize">Admin</small>
+          <small class="text--disabled text-capitalize">{{role}}</small>
         </div>
       </div>
 
@@ -91,6 +91,9 @@ export default {
   computed: {
     userName: function () {
       return this.$store.getters.getUser(this.$route.params.id)['user']
+    },
+    role: function () {
+      return this.$store.getters.getUser(this.$route.params.id)['role']
     },
   },
 }

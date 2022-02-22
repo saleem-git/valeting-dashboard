@@ -314,11 +314,18 @@ export default {
     },
     submit: function () {
       let userInfor = this.$store.getters.getUser(this.$route.params.id)
-      if (!'carInfo' in userInfor) {
+      if (('carInfo' in userInfor) && (this.editing)) {
+        userInfor['carInfo'][this.$route.query.number]= {...userInfor['carInfo'][this.$route.query.number],...this.customerCarData}
+        this.$store.commit('addCarToservice',userInfor)
+      } else if ((this.$route.query.number == undefined) && (!'carInfo' in userInfor)) {
         userInfor['carInfo'] = []
-      }      
-      userInfor['carInfo'].push(this.customerCarData)
-      this.$store.commit('addCarToservice',userInfor)
+        userInfor['carInfo'].push(this.customerCarData)
+        this.$store.commit('addCarToservice',userInfor)
+      } else {
+        userInfor['carInfo'].push(this.customerCarData)
+        this.$store.commit('addCarToservice',userInfor)
+      }
+      this.$router.push({ name: 'list-cars', params: { id: this.$route.params.id } })
     }
   },
 }
